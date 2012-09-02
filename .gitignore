@@ -4,8 +4,12 @@
 *.dvi
 *.log
 *.nav
-*.ouf
-*.pdf
+*.out
+*.ps
 *.snm
 *.toc
 *.vrb
+*.gz
+*.zip
+*~
+*.swp
