@@ -2,23 +2,31 @@
 \usepackage[utf8]{inputenc}
 \usepackage[francais]{babel}
 
+\usepackage{beamertheme_atilla/beamerthemeAtilla}
+
+\usepackage{ulem}
 \usepackage{tabularx}
 \usepackage{subfig}
 \usepackage{listings}
 \usepackage{verbatim}
 
-\usetheme{Atilla}
-\usecolortheme{atilla1}
 
 \author{Pierre Sudron}
 \title{{\huge git pour les novices}}
-\institute{EISTI}
+\institute{Association Atilla}
 \date{\today}
 
 \begin{document}
 
 \begin{frame}[t,plain]
 \titlepage
+
+\begin{figure}
+	\begin{flushright}
+	\includegraphics[width=2cm]{img/cc-by-sa}
+	\end{flushright}
+\end{figure}
+
 \end{frame}
 
 \begin{frame}{git est un système de gestion de sources}
@@ -33,7 +41,7 @@
 	\end{center}
 \end{frame}
 
-\begin{frame}{autres systèmes existants}
+\begin{frame}{Autres systèmes existants}
 	\begin{itemize}
 		\item Subversion (svn)
 		\item Mercurial (Hg)
@@ -112,7 +120,7 @@
 
 \begin{frame}{De quoi ai-je besoin ?}
 	\begin{center}
- 		\Large{Rien}\\
+ 		\Large{Ouvrir un terminal}\\
  		{\small  \textit{(mais sous Linux, hein...)}}
 	\end{center}
 
@@ -189,6 +197,12 @@
 		git config --global user.name "Votre nom"
 		git config --global user.email "root@atilla.org"
 	\end{lstlisting}
+	
+	Pour activer la couleur dans le terminal :
+	\begin{lstlisting}[frame=single]
+		git config --global color.ui auto
+	\end{lstlisting}
+	
 
 \end{frame}
 
@@ -300,7 +314,7 @@
 		\begin{tabular}{l c l}
 		\includegraphics[width=1cm]{img/working_dir} & \textbf{répertoire de travail :} & README \\
 		\includegraphics[width=1cm]{img/stash} & \textbf{fichiers indexés :} & \textbf{vide}\\
-		\includegraphics[width=1cm]{img/git_repo} & \textbf{dépôt local :} & commit \texttt{abcdef01} (no1) \\ 
+		\includegraphics[width=1cm]{img/git_repo} & \textbf{dépôt local :} & \textbf{commit \#1} \\ 
 		\end{tabular} 
 	\end{center}
 
@@ -359,7 +373,7 @@
 		\begin{tabular}{l c l}
 		\includegraphics[width=1cm]{img/working_dir} & \textbf{répertoire de travail :} & README (modifié)\\
 		\includegraphics[width=1cm]{img/stash} & \textbf{fichiers indexés :} & \textbf{README (modifié)}\\
-		\includegraphics[width=1cm]{img/git_repo} & \textbf{dépôt local :} & commit \#1 {\tiny\textit{(Ajout du fichier README)}} \\ 
+		\includegraphics[width=1cm]{img/git_repo} & \textbf{dépôt local :} & commit \#1 \\ 
 		\end{tabular} 
 	\end{center}
 
@@ -408,7 +422,7 @@
 \begin{frame}{Export vers un dépôt git en ligne}
 	Nous utiliserons une instance \textbf{GitLab} disponible à l'adresse :
 	\begin{center}
-	\url{http://gitlab-test.ccr.eisti.fr/}
+	\url{http://gitlab.etude.eisti.fr/}
 	\end{center}
 	\begin{figure}
   		\centering
@@ -430,7 +444,10 @@
 \end{frame}
 
 \begin{frame}{Créer un projet sur GitLab}
-	(mettre des captures d'écran)
+	\begin{figure}
+  		\centering
+ 		\includegraphics[width=11cm]{img/shot12}
+	\end{figure}
 \end{frame}
 
 \begin{frame}[fragile]{Créer une clé SSH}
@@ -471,12 +488,23 @@
 
 \begin{frame}[fragile]{Ajouter le dépôt dans votre projet}
 	\begin{lstlisting}[frame=single]
-		git remote add origin
+		git remote add origin [adresse du depot]
 	\end{lstlisting}
 	
 	\begin{itemize}
 		\item \textbf{origin :} nom donné au serveur distant par convention
 	\end{itemize}
+	\bigskip
+	
+	\begin{center}
+	\textit{Vous trouverez l'adresse de votre dépôt sur sa page d'accueil.}
+	\end{center}
+	\vspace{-.5cm}
+	\begin{figure}
+			\centering
+			\includegraphics[width=11cm]{img/shot13}
+	\end{figure}
+	
 \end{frame}
 
 \begin{frame}[fragile]{Mettre le projet en ligne !}
@@ -504,7 +532,10 @@
 
 \begin{frame}{Voir le résultat sur GitLab}
 	Il ne reste plus qu'à constater le résultat avec satisfaction !
-	(mettre des captures d'écran)
+	\begin{figure}
+  		\centering
+ 		\includegraphics[width=11cm]{img/shot11}
+	\end{figure}
 \end{frame}
 
 
@@ -533,8 +564,205 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame}
-	Partie pas faite... En gros, on reprend les concepts données plus haut, mais sur un projet à plusieurs.
+\begin{frame}{De quoi ai-je besoin ?}
+	\begin{center}
+ 		\Large{logiciel Meld}\\
+ 		{\small  \textit{prenez un moment pour l'installer avant de continuer...}}
+	\end{center}
+
+	\begin{figure}
+		\centering
+		\includegraphics[height=3cm]{img/meld}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Accès aux projets}
+
+Un projet n'est visible que pour les membres de l'\textbf{équipe en charge}.
+\vspace{-.3cm}
+	\begin{figure}
+		\centering
+		\includegraphics[width=10cm]{img/shot14}
+	\end{figure}
+	\vspace{-.3cm}
+Les équipes comportent différents niveaux de responsabilité :
+	\begin{itemize}
+		\item Master
+		\item Developer
+		\item Reporter
+		\item Guest	
+	\end{itemize}	 
+\end{frame}
+
+\begin{frame}[fragile]{Cloner un dép\^ot existant}
+
+	\begin{itemize}
+		\item récupérer l'adresse du dép\^ot
+		\begin{figure}
+			\centering
+			\includegraphics[width=11cm]{img/shot13}
+		\end{figure}
+		\item cloner le dép\^ot	(cette opération créé le répertoire du projet)
+		\begin{lstlisting}[frame=single]
+		git clone [adresse]
+		\end{lstlisting}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Cloner un dépôt existant}
+	Le projet \textbf{Participants formation} contient un seul fichier dans lequel chacun va ajouter son nom.	
+	\begin{itemize}
+		\item assurez-vous que vous êtes inscrit au projet comme développeur
+		\item clonez le dépôt sur votre machine
+		\item tout le monde doit être à la même version
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Allons y...}
+	\begin{itemize}
+		\item ajoutez votre nom à la fin du fichier
+		\item faites un commit
+		\item essayer de push...
+	\end{itemize}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=11cm]{img/shot16}
+	\end{figure}
+	
+	\begin{center}
+	oui, ça veut dire\\
+	{\Large \textbf{PA - TA - TRAS !}}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Qu'est-ce que j'ai fait pour mériter ça ?}
+	
+	Si il y a un mot à retenir dans le message d'erreur :
+	\begin{figure}
+		\centering
+		\includegraphics[width=11cm]{img/shot17}
+	\end{figure}
+	\begin{figure}
+		\centering
+		\includegraphics[width=2cm]{img/stop}
+	\end{figure}
+	\textbf{non-fast-forward} signifie que vous écraseriez les commits d'autres si git vous laissait push.
+	
+\end{frame}
+
+\begin{frame}{Qu'est-ce qui s'est passé ?}
+	\begin{figure}
+		\centering
+		\includegraphics[width=8cm]{img/repo6}
+	\end{figure}
+	
+	Un fichier a été modifié et mis en ligne depuis votre dernier pull.
+		
+\end{frame}
+
+\begin{frame}{Comment s'en sortir ?}
+	On souhaiterait appliquer nos commits à la suite de ceux des autres.
+	\begin{figure}
+		\centering
+		\includegraphics[width=10cm]{img/repo8}
+	\end{figure}
+	C'est une opération de \textbf{rebase}.
+\end{frame}
+
+\begin{frame}[fragile]{Chacun son tour}
+	\begin{itemize}
+		\item récupérer les derniers commits en ligne et rebaser nos commits à partir de là
+		\begin{lstlisting}[frame=single]
+		git pull --rebase
+		\end{lstlisting}
+		\begin{figure}
+		\centering
+		\includegraphics[width=10cm]{img/repo8}
+		\end{figure}
+		\item cette opération peut soulever un \textbf{conflit} bloquant car plusieurs personnes ont modifié le même fichier
+	\end{itemize}	
+\end{frame}
+
+\begin{frame}{Les conflits}
+
+	Un \textbf{conflit} a lieu quand on cherche à mettre en commun deux fichiers dont les mêmes sections ont été modifiées par deux personnes.  
+	\begin{figure}
+	\centering
+	\includegraphics[width=10cm]{img/shot15}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Résoudre un conflit bloquant un rebase}
+	Le message d'erreur du \texttt"{pull --rebase} nous indique les deux étapes à suivre :
+	\begin{itemize}
+		\item corriger les conflits dans les fichiers continus
+		\item achever et valider le rebase avec
+		\begin{lstlisting}[frame=single]
+		git rebase --continue
+		\end{lstlisting}
+	\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Gérer les conflits avec une interface}
+	Pour résoudre le conflit nous allons utiliser \sout{l'ONU} \textbf{Meld}. Notez qu'il existe énormément de logiciels équivalents.
+	
+	\begin{itemize}
+		\item définir Meld comme outil de gestion de conflit
+		\begin{lstlisting}[frame=single]
+		git config --global merge.tool meld 
+		\end{lstlisting}
+		
+		\item commencer à gérer le conflit
+		\begin{lstlisting}[frame=single]
+		git mergetool
+		\end{lstlisting}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Gérer des conflits avec une interface}
+	Meld (comme ses équivalents) présente sur trois colonnes, trois version du fichier :
+	\begin{itemize}
+		\item \textbf{locale} à gauche : votre dernière version de la branche réceptrice
+		\item \textbf{remote} à droite : la dernière version de la branche à fusionner
+		\item \textbf{origin} au centre : la dernière version commune aux deux branches
+	\end{itemize}
+	\bigskip
+	Dans la pratique, on enregistrera le résultat voulu dans la \textbf{colonne centrale}, c'est à dire sur \textbf{origin}.
+\end{frame}
+
+\begin{frame}[fragile]{Finaliser la résolution de conflits}
+
+	mergetool créé un fichier de sauvegarde \texttt{<fichier>.orig}, on peut les supprimer une fois la session mergetool terminée
+	\vfill{}
+	
+	Il reste à teminer l'opération de rebase
+	\begin{lstlisting}[frame=single]
+		git rebase --continue
+	\end{lstlisting}	
+	
+\end{frame}
+
+\begin{frame}{Partager son travail}
+	
+	Il n'y a plus de problème de \textbf{fast forward} : on peut désormais push.
+	\begin{figure}
+		\centering
+		\includegraphics[width=8cm]{img/repo6}
+	\end{figure}
+	\vspace{-.6cm}
+	\begin{figure}
+		\centering
+		\includegraphics[height=1cm]{img/down}
+	\end{figure}
+	\vspace{-.9cm}
+	\begin{figure}
+		\centering
+		\includegraphics[width=10cm]{img/repo8}
+	\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -545,7 +773,7 @@
 
 	\begin{figure}
 		\centering
-		\includegraphics[height=3cm]{img/web}
+		\includegraphics[height=3cm]{img/diagram}
 	\end{figure}
 \end{frame}
 
@@ -564,7 +792,7 @@
 	Jean-Paul a fini de rédiger le poly du cours de cette année, en \LaTeX{} bien entendu !\\
 	
 	
-	Il souhaite continuer à rajouter des parties pour l'anné suivante tout en gardant une version de cette année afin de corriger les coquilles que ses élèves lui signalent.\\
+	Il souhaite continuer à rajouter des parties pour l'année suivante tout en gardant une version de cette année afin de corriger les coquilles que ses élèves lui signalent.\\
 	Mais comme Jean Paul n'est pas très organisé, nous allons l'aider à mieux gérer son texte de cours avec \textbf{git} et les \textbf{branches} !	
 \end{frame}
 
@@ -790,13 +1018,34 @@
 	\end{lstlisting}	
 \end{frame}
 
+\begin{frame}[fragile]{Mettre en ligne votre branche}
+
+	\begin{lstlisting}[frame=single]
+		git push origin [ma_branche]
+	\end{lstlisting}	
+	
+	\begin{figure}
+  		\centering
+ 		\subfloat{\includegraphics[height=2.5cm]{img/git_repo}}     
+		\subfloat{\includegraphics[height=1.5cm]{img/forward}}
+  		\subfloat{\includegraphics[height=2.5cm]{img/web}}
+	\end{figure}
+
+	\begin{center}
+		\begin{tabular}{p{3.4cm}  p{1cm} p{2cm}}
+		\centering ma\_branche & & origin
+		\end{tabular}
+	\end{center}
+	
+\end{frame}
+
 \begin{frame}[fragile]{Terminer une branche}
 
 	\begin{lstlisting}[frame=single]
 		git branch -d rentree_suivante
 	\end{lstlisting}
 	\vfill{}
-	Il possible de terminer seulement une branche qui a été merge.
+	Il possible de terminer seulement une branche qui a été merge et n'a pas été modifiée depuis.
 	Pour forcer la suppression d'une branche :
 	\begin{lstlisting}[frame=single]
 		git branch -D rentree_suivante
@@ -806,7 +1055,63 @@
 
 \begin{frame}
 	\begin{center}
- 		\Large{Bonus : Quelques conseils}\\
+ 		\Large{Partie 4 : remonter le temps}\\
+ 		{\small  \textit{C'est moi Doc ! Je suis de retour du futur...}}
+	\end{center}
+
+	\begin{figure}
+		\centering
+		\includegraphics[height=3cm]{img/delorean}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Accès à un commit}
+	
+	\begin{itemize}
+		\item \textbf{HEAD} :  dernier commit de la branche courante
+		\item \textbf{nom\_branche\//HEAD} : dernier commit de la branche nom\_branche
+		\item donner le nom d'une branche revient à pointer vers le dernier commit de cette branche 
+	\end{itemize}
+	\bigskip
+	Il est possible de se "déplacer" relativement à un commit
+	\begin{itemize}
+		\item \textbf{HEAD\^ } : un commit avant HEAD
+		\item \textbf{HEAD\^{}\^{} } : deux commits avant HEAD
+		\item \textbf{HEAD\~{}42 } : quarante deux commits avant HEAD
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Accès à un commit}
+	\begin{itemize}
+		\item trouver l'identifiant court d'un commit
+		\begin{lstlisting}[frame=single]
+		git log --oneline
+		\end{lstlisting}
+		\item \textbf{master@\{20/09/2012\}} : prendre un commit à une date donnée
+	\end{itemize}	
+\end{frame}
+
+\begin{frame}[fragile]{Voyager dans le temps}
+	\begin{itemize}
+		\item mettre un fichier tel qu'il était à un commit donné
+		\begin{lstlisting}[frame=single]
+		git checkout [nom_commit] [fichier]
+		\end{lstlisting}
+	\end{itemize}
+	Cette manipulation modifie directement le fichier dans votre répertoire de travail.	
+		
+	\begin{itemize}
+		\item remettre un fichier "en l'état"
+		\begin{lstlisting}[frame=single]
+		git checkout HEAD [fichier]
+		\end{lstlisting}
+	\end{itemize}	
+\end{frame}
+
+
+\begin{frame}
+	\begin{center}
+ 		\Large{Annexe 1 : Quelques conseils}\\
  		{\small  \textit{tout va bien se passer...}}
 	\end{center}
 
@@ -820,7 +1125,7 @@
 
 	\begin{itemize}
 		\item segmentez les tâches, faites un commit dès que possible
-		\item testez votre code avant de faire un commit
+		\item ne commitez pas sciemment un code qui ne marche pas
 	\end{itemize}
 	
 \end{frame}
@@ -828,12 +1133,13 @@
 \begin{frame}{Les branches c'est bon, mangez-en !}
 	\begin{figure}
 		\centering
-		\includegraphics[height=4cm]{img/koala-eating-leaf}
+		\includegraphics[height=3cm]{img/koala-eating-leaf}
 	\end{figure}
 
 	\begin{itemize}
 		\item séparez les tâches indépendantes
 		\item n'hésitez pas à faire des expérimentations dans une branche dédiée
+		\item gardez une branche "stable" à tout moment de votre développement
 	\end{itemize}
 	
 \end{frame}
@@ -842,9 +1148,84 @@
 
 	\begin{itemize}
 		\item organisez-vous et concertez-vous avec vos partenaires
+		\item donnez des titres compréhensibles à vos commits
 		\item suivez les avancées des autres, donnez votre avis
+		\item construisez votre cycle de développement intelligemment : en fonction de la taille et la nature de votre équipe, vos deadlines, \textit{etc.}
 	\end{itemize}
 	
+\end{frame}
+
+\begin{frame}
+		\begin{center}
+ 		\Large{Annexe 2 : Guide de survie}\\
+ 		{\small \textit{Comme Rambo, mais en mieux.}}
+	\end{center}
+
+	\begin{figure}
+		\centering
+		\includegraphics[height=3cm]{img/defcon}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Au début de la journée de travail}
+
+	\begin{itemize}
+		\item je commence toujours par récupérer le travail des autres
+		\begin{lstlisting}[frame=single]
+		git pull
+		\end{lstlisting}
+	
+		\item je vérifie sur quelle branche je me trouve
+		\begin{lstlisting}[frame=single]
+		git branch
+		git checkout
+		\end{lstlisting}
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Quand je code}
+	\begin{itemize}
+		\item j'ajoute mes fichier modifiés à l'index
+		\begin{lstlisting}[frame=single]
+		git add
+		\end{lstlisting}
+		\item je vérifie mes modifications suivies
+		\begin{lstlisting}[frame=single]
+		git status
+		\end{lstlisting}
+		\item je valide mes changements dans un commit
+		\begin{lstlisting}[frame=single]
+		git commit
+		\end{lstlisting}
+	\end{itemize}	
+\end{frame}
+
+\begin{frame}[fragile]{Partager mon travail}
+	\begin{itemize}
+	\item je publie mon travail au moins en fin de journée
+	\begin{lstlisting}[frame=single]
+		git push
+	\end{lstlisting}
+	\item en cas de fast-forward, j'applique mes modifications après celles des autres
+	\begin{lstlisting}[frame=single]
+		git pull --rebase
+	\end{lstlisting}
+	\item en cas de conflit, je fait les modications à la main
+	\begin{lstlisting}[frame=single]
+		git mergetool
+		git rebase --continue
+	\end{lstlisting}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Au secours, rien ne va plus !}
+	\begin{itemize}
+		\item faire attention à ce qu'on fait pour éviter les ennuis inutiles
+		\item DON'T PANIC !
+		\item prendre le temps de lire les messages d'erreur de git (ils donnent souvent la solution)
+		\item il existe de très nombreuses ressources sur le net
+	\end{itemize}
 \end{frame}
 
 % ----------------
